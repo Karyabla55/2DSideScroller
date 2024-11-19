@@ -5,18 +5,21 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField] private float moveSpeed = 5f;
-	private Transform target;
-	public Animator animator;
+	private Animator animator;
 	public GameObject playerSprite;
-
-	private bool isChasing;
+	
 	public float chaseDistance = 15;
-	public float chaseLeft = 30;
+	public float chaseLeft = 17;
 
+	private Transform target;
+	private bool isChasing;
 	private bool direction;
 	private Rigidbody2D rb;
 
-
+	private void Awake()
+	{
+		animator = GetComponent<Enemy>().animator;
+	}
 	private void Start()
 	{
 		target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -38,41 +41,40 @@ public class EnemyMovement : MonoBehaviour
 			playerSprite.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
 
 		}
-		// Animator updates
 
 
 	}
 
 	private void FixedUpdate()
 	{
-		// Movement
-		if (isChasing)
-		{
-			if (Vector2.Distance(transform.position, target.position) > chaseDistance)
+			// Movement
+			if (isChasing)
 			{
-				isChasing = false;
+				if (Vector2.Distance(transform.position, target.position) > chaseDistance)
+				{
+					isChasing = false;
+				}
+				if (transform.position.x > target.position.x)
+				{
+					direction = true;
+					rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+					animator.SetFloat("moveX", -1);
+				}
+				if (transform.position.x < target.position.x)
+				{
+					direction = false;
+					rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+					animator.SetFloat("moveX", 1);
+				}
 			}
-			if (transform.position.x > target.position.x)
+			else
 			{
-				direction = true;
-				rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-				animator.SetFloat("moveX", -1);
+				if (Vector2.Distance(transform.position, target.position) < chaseDistance)
+				{
+					isChasing = true;
+				}
+				animator.SetFloat("moveX", 0);
 			}
-			if (transform.position.x < target.position.x)
-			{
-				direction = false;
-				rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-				animator.SetFloat("moveX", 1);
-			}
-		}
-		else
-		{
-			if (Vector2.Distance(transform.position, target.position) < chaseDistance)
-			{
-				isChasing = true;
-			}
-			animator.SetFloat("moveX", 0);
-		}
 	}
 
 }

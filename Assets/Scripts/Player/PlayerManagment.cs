@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManagment : MonoBehaviour
 {
+	private float playerHealth = 100;
 	public PlayerMovement movement;
     public GameObject[] WeaponPrefabs;
 	public GameObject crosshair;
@@ -31,6 +32,13 @@ public class PlayerManagment : MonoBehaviour
 		Destroy(Weapon);
 		Weapon = Instantiate(WeaponPrefabs[currentWeapon], transform.parent);
 		Weapon.GetComponent<Aim>().crosshair = crosshair.transform;
+	}
+	
+	public void TakeDamage(float damage)
+	{
+		playerHealth -= damage;
+		Debug.Log("Player health: "+playerHealth);
+
 	}
 
 }
