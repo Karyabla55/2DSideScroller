@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManagment : MonoBehaviour
 {
-	private float playerHealth = 100;
+	private int playerHealth = 5;
 	public PlayerMovement movement;
     public GameObject[] WeaponPrefabs;
 	public GameObject crosshair;
 	public float weaponOffsetY;
 	public int currentWeapon = 0; 
 
-	private GameObject Weapon;
+    private GameObject Weapon;
 	private void Awake()
 	{
 		Weapon = Instantiate(WeaponPrefabs[currentWeapon], transform.parent);
@@ -34,11 +36,21 @@ public class PlayerManagment : MonoBehaviour
 		Weapon.GetComponent<Aim>().crosshair = crosshair.transform;
 	}
 	
-	public void TakeDamage(float damage)
+	public void TakeDamage(int damage)
 	{
-		playerHealth -= damage;
+        playerHealth -= damage;
+		if(playerHealth <= 0)
+        {
+            Debug.Log("Player is dead");
+            SceneManager.LoadScene(0);
+        }
 		Debug.Log("Player health: "+playerHealth);
 
 	}
+
+	public int GetHealth()
+    {
+        return playerHealth;
+    }
 
 }

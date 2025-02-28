@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1917000638150923111}
   - component: {fileID: 7602433013112332284}
   - component: {fileID: 3760633669925610891}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Idle_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4328150508494564225}
   - component: {fileID: 1285841088393856189}
   - component: {fileID: 7737206368220304620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Martial Artist
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -276,8 +276,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04110688, y: 0.036343634}
-  m_Size: {x: 0.32054007, y: 1.4651982}
+  m_Offset: {x: 0.041107, y: 0.036343634}
+  m_Size: {x: 0.5469111, y: 1.4651982}
   m_Direction: 0
 --- !u!114 &4328150508494564225
 MonoBehaviour:
@@ -307,8 +307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2.7
   attackCooldown: 2
-  damage1: 15
-  damage2: 20
+  damage1: 1
+  damage2: 1
   IsHaveSecondAttack: 1
 --- !u!114 &7737206368220304620
 MonoBehaviour:

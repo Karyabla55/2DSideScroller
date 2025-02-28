@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1435663353758278501}
   - component: {fileID: 3210726383791555578}
   - component: {fileID: 5230190739769585745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EvilWizard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -96,8 +96,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05701673, y: -0.040725946}
-  m_Size: {x: 0.38596654, y: 1.4561315}
+  m_Offset: {x: -0.04569745, y: -0.27841544}
+  m_Size: {x: 0.54442596, y: 1.4561315}
   m_Direction: 0
 --- !u!114 &1435663353758278501
 MonoBehaviour:
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2
   attackCooldown: 3
-  damage1: 15
-  damage2: 20
+  damage1: 1
+  damage2: 0
   IsHaveSecondAttack: 0
 --- !u!114 &5230190739769585745
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2952fcc25378fe64ab7bea1f46330280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   playerSprite: {fileID: 8788277239133283238}
   chaseDistance: 15
   chaseLeft: 30
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7111839115757490131}
   - component: {fileID: 4536310231835460532}
   - component: {fileID: 5585800804783819621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 8788277239133283238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
