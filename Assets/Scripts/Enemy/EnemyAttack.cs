@@ -9,7 +9,8 @@ public class EnemyAttack : MonoBehaviour
 	public int damage2 = 20;
 	public bool IsHaveSecondAttack = false;
 
-	private int curretAttackDamage;
+	[SerializeField] float FirstAttackDelay = 0.5f;
+    private int curretAttackDamage;
 	private GameObject player;
 	private Animator animator;
 	private float nextAttackTime = 0f;
@@ -29,9 +30,11 @@ public class EnemyAttack : MonoBehaviour
 
 		if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
 		{
+
 			if (!performedFirstAttack)
 			{
-				PerformAttack1();
+                StartCoroutine(AddDelay(FirstAttackDelay));
+                PerformAttack1();
 				performedFirstAttack = true;
 				nextAttackTime = Time.time + attackCooldown / 3; // Delay for the second attack
 			}
@@ -40,13 +43,14 @@ public class EnemyAttack : MonoBehaviour
 				PerformAttack2();
 				//performedFirstAttack = false;
 				nextAttackTime = Time.time + attackCooldown;
-				StartCoroutine(AddDelayToTurnIdle(0.7f));
+				StartCoroutine(AddDelay(0.7f));
+                animator.SetInteger("Attack", 0);
+                performedFirstAttack = false;
 
-			}
+            }
 			else if (performedFirstAttack && !IsHaveSecondAttack)
 			{
-				StartCoroutine(AddDelayToTurnIdle(0.7f));
-				
+				StartCoroutine(AddDelay(0.7f));	
 			}
 		}
 		if (distanceToPlayer > attackRange)
@@ -79,12 +83,11 @@ public class EnemyAttack : MonoBehaviour
 		Gizmos.DrawWireSphere(transform.position, attackRange);
 	}
 
-	private IEnumerator AddDelayToTurnIdle(float delayTime)
+	private IEnumerator AddDelay(float delayTime)
 	{
 
 		yield return new WaitForSeconds(delayTime);
-		animator.SetInteger("Attack", 0);
-		performedFirstAttack = false;
+		
 
 	}
 	public int getCurrentDamage()
